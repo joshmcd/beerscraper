@@ -1,3 +1,7 @@
+#this was the working version of the file, preserved in case I need to revisit the logic later
+
+
+
 require 'mechanize'
 require 'csv'
 
