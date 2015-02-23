@@ -6,17 +6,16 @@ require 'csv'
 mechanize = Mechanize.new
 url = 'http://www.lcbapps.lcb.state.pa.us/webapp/registered_brands.asp'
 page = mechanize.get(url)
-
-CSV.open('C:\Users\jmcdon39\Desktop\beertest.csv', 'w+') do |csv|
+puts "Where should we create the file (e.g. C:\Users\username\Desktop)?"
+path = gets + ".csv"
+CSV.open('#{path}', 'w+') do |csv|
 	csv << ["Brand Name", "Manufacturer", "BC" ]
 end
-
 	beer_array = [] #this is where we're putting the beer names
 	brand = []
 	man = []
 	bc = []
 	q = 0
-	
 (1..6).each do |x|
 	brandInterval = 0
 	manInterval = 1
@@ -31,7 +30,6 @@ end
 	c.children.each do |nodes|
 		g << nodes
 	end
-	
 		until q == 175
 			interval = 7
 			brand = g.values_at(brandInterval)
@@ -46,11 +44,9 @@ end
 	q = 0
 	end
 	
-	CSV.open('C:\Users\jmcdon39\Desktop\beertest.csv', "a+") do |csv|
+	CSV.open('#{path}', "a+") do |csv|
 		beer_array.each do |beer|
-			
-			csv << beer[0] + beer[1] + beer[2]
-			
+	       	csv << beer[0] + beer[1] + beer[2]
 	end
 end
 
