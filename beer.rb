@@ -5,7 +5,7 @@ require 'csv'
 
 mechanize = Mechanize.new
 url = 'http://www.lcbapps.lcb.state.pa.us/webapp/registered_brands.asp'
-page = mechanize.get(url)i
+page = mechanize.get(url)
 
 #you may want to edit the path/filename
 CSV.open('beer_results.csv', 'w+') do |com|
