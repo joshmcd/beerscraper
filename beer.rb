@@ -5,18 +5,21 @@ require 'csv'
 
 mechanize = Mechanize.new
 url = 'http://www.lcbapps.lcb.state.pa.us/webapp/registered_brands.asp'
-page = mechanize.get(url)
-puts "Where should we create the file (e.g. C:\Users\username\Desktop)?"
-path = gets + ".csv"
-CSV.open('#{path}', 'w+') do |csv|
-	csv << ["Brand Name", "Manufacturer", "BC" ]
+page = mechanize.get(url)i
+
+#you may want to edit the path/filename
+CSV.open('beer_results.csv', 'w+') do |com|
+	com << ["Brand Name", "Manufacturer", "BC" ]
 end
 	beer_array = [] #this is where we're putting the beer names
 	brand = []
 	man = []
 	bc = []
 	q = 0
-(1..6).each do |x|
+#there are 287 results. It wouldn't be difficult to alter the query to actually pull the number directly from the page, but I was feeling lazy.
+
+(1..287).each do |x|
+
 	brandInterval = 0
 	manInterval = 1
 	bcInterval = 2
@@ -44,7 +47,7 @@ end
 	q = 0
 	end
 	
-	CSV.open('#{path}', "a+") do |csv|
+	CSV.open('beer_results.csv', "a+") do |csv|
 		beer_array.each do |beer|
 	       	csv << beer[0] + beer[1] + beer[2]
 	end
